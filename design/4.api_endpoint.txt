@@ -1,0 +1,28 @@
+REST API DESIGN
+
+Books & Reviews Resources
+1. GET /books --Lấy danh sách tất cả sách.
+2. GET /books/{isbn} --Lấy thông tin sách theo ISBN.
+3. GET /books?author=Unknown&title=The --Tìm kiếm các sách
+4. GET /books/{isbn}/reviews --Lấy tất cả đánh giá của một sách theo ISBN.
+5. POST /books --Vendor thêm một cuốn sách mới.
+6. PUT /books/{isbn} --Vendor cập nhật thông tin sách.
+7. DELETE /books/{isbn} --Vendor xóa sách theo ISBN.
+
+8. POST books/{isbn}/reviews --Thêm mới đánh giá cho sách.
+9. PUT /books/{isbn}/reviews/{reviewId} --Cập nhật đánh giá của người dùng.
+10. DELETE /books/{isbn}/reviews/{reviewId} --Xóa đánh giá của người dùng.
+
+Users Resource
+Customer APIs
+13. GET /customers/{uid} --Lấy thông tin người dùng theo UID.
+14. PATCH /customers/{uid}  --Cập nhật thông tin người dùng.
+15. POST /customers/orders  --Mua sách (customer chỉ mua sách).
+
+Vendor APIs
+16. GET /vendors/{uid}  --Lấy thông tin vendor theo UID.
+17. PATCH /vendors/{uid} --Cập nhật thông tin vendor.
+
+Auth
+11. POST /users/register  --Đăng ký người dùng (customer).
+12. POST /auth/login  --Đăng nhập người dùng (customer hoặc vendor).

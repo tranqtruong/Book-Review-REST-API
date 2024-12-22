@@ -1,0 +1,39 @@
+#MongoDB
+
+#Collection: books
+{
+  "_id": ObjectId,
+  "isbn": String,               // Mã định danh sách toàn cầu (duy nhất)
+  "title": String,              // Tựa đề sách
+  "author": String,             // Tác giả sách
+  "genres": [String],           // Thể loại sách
+  "publishedDate": Date,        // Ngày xuất bản
+  "copies": Number,             // Số lượng bản có sẵn
+  "price": Number,              // Giá sách
+  "reviews": [                  // Danh sách các đánh giá
+    {
+      "reviewerId": ObjectId,   // ID người đánh giá (customer)
+      "reviewerName": String,   // Tên người đánh giá
+      "rating": Number,         // Đánh giá (1-5 sao)
+      "comment": String,        // Nhận xét
+      "date": Date              // Ngày đánh giá
+    }
+  ]
+}
+
+Collection Users
+{
+  "_id": ObjectId,          // id
+  "email": String,          // (unique)
+  "password": String,       // Mật khẩu đã được mã hóa
+  "full_name": String,      // Tên người dùng
+  "role": String,           // Vai trò của người dùng: "customer", "vendor"
+  "DOB": Date,              // Ngày sinh của người dùng
+  "purchasedBooks": [       // Chỉ áp dụng cho customer
+
+  ],
+  "addedBooks": [           // Chỉ áp dụng cho vendor
+    
+  ],
+}
+

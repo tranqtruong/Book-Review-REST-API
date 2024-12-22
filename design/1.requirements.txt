@@ -1,0 +1,20 @@
+visiting guests
+// Get the book list available in the shop
+// Get book details based on ISBN
+// Get book details based on author
+// Get all books based on title
+//  Get book reviews
+// Sign in as Customer
+
+
+customer
+- login as customer
+- Buy a book
+- Add a book review
+
+
+vendor
+- login as vender
+// Add books
+// Update books
+// Delete books

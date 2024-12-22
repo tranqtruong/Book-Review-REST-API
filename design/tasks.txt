@@ -1,0 +1,52 @@
+
+Task 1: Get the book list available in the shop ( GET - /books )
+
+Task 2: Get the books based on ISBN. ( GET - /books?isbn=1 )
+
+Task 3: Get all books by Author.( GET - /books?author=john )
+
+Task 4: Get all books based on Title(/books/ GET - /books?title=fun )
+
+Task 5: Get book Review. ( GET - /books/:isbn/reviews )
+
+Task 6: Register New user (POST - /register )
+
+Task 7: Login as a Registered user (POST - /login )
+
+Registered Users:
+Task 8: Add/Modify a book review. (PUT - /books/:isbn/reviews/:reviewId )
+
+Task 9: Delete book review added by that particular user (DELETE - /books/:isbn/reviews/:reviewId )
+
+Node.JS program with 4 methods:
+Use Async/Await or Promises with Axios in Node.js for all the four methods.
+
+Task 10: Get all books – Using async callback function – 2 Points
+
+Task 11: Search by ISBN – Using Promises – 2 Points
+
+Task 12: Search by Author – 2 Points
+
+Task 13: Search by Title - 2 Points
+
+Task 14: Submission of Project GitHub Link - 2 Points
+
+
+Part B: npm install the necessary packages and Postman Login
+Change to the express JS server directory and install all the packages required in your local environment for the server to run.
+Use your Google mail credentials to register or log in with Postman and test the API endpoints for your final project.
+Part C: Implementing Authentication for using the Book Review application
+You will create access restrictions to some endpoints using JWT and session level authentication.
+Part D: Access the book review application as general purpose user and register user
+General user can access all the books available in the shop and get all books based on ISBN,Author,Title,Review.
+Once a user register with the app, they are able to add or modify and delete book reviews.
+Part E: Use Async/Await or Promises with Axios in Node.js for each of the four CRUD Operations.
+Using the async,callback function, retrieve all books. Using Promises, search for the book by ISBN and then search by author or title.
+Now test the API endpoints using Postman.
+
+
+
+
+
+
+
