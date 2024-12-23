@@ -50,4 +50,10 @@ router.patch(
   bookController.updateBookReview
 );
 
+router.delete(
+  "/:isbn/reviews",
+  checkJwt,
+  isCustomerRole,
+  bookController.deleteBookReview
+);
 export default router;

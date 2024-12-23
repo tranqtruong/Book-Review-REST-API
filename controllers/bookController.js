@@ -125,3 +125,14 @@ export const updateBookReview = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteBookReview = async (req, res, next) => {
+  try {
+    const { isbn } = req.params;
+    const email = req.user.username;
+    await bookService.removeUserBookReview(isbn, email);
+    res.status(200).json({ message: "review removed" });
+  } catch (error) {
+    next(error);
+  }
+};

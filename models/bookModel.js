@@ -20,6 +20,7 @@ export const save = async (newBook) => {
   let book = await findByISBN(newBook.isbn);
   if (book) {
     Object.assign(book, newBook);
+    //console.log(books[books.length - 1]);
     return book;
   }
 

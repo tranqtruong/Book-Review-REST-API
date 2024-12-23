@@ -59,6 +59,13 @@ export const deleteBook = async (isbn) => {
   bookModel.deleteByISBN(isbn);
 };
 
+const checkBookPurchased = async (isbn, user) => {
+  const isBookExist = user.purchasedBooks.some((_isbn) => _isbn === isbn);
+  if (!isBookExist) {
+    throw new CustomError("you haven't purchased the book", 403);
+  }
+};
+
 export const addBookReview = async (isbn, reviewData, email) => {
   // check isbn ton tai va lay book
   let book = await bookModel.findByISBN(isbn);
@@ -71,10 +78,7 @@ export const addBookReview = async (isbn, reviewData, email) => {
   if (!user) {
     throw new CustomError("user not found!", 404);
   }
-  const isBookExist = user.purchasedBooks.some((isbn) => isbn === isbn);
-  if (!isBookExist) {
-    throw new CustomError("You can't review books you haven't purchased", 403);
-  }
+  await checkBookPurchased(isbn, user);
 
   //kiem tra user da binh luan truoc do chua?
   const isUserReviewed =
@@ -113,10 +117,7 @@ export const updateABookReview = async (isbn, reviewData, email) => {
   if (!user) {
     throw new CustomError("user not found!", 404);
   }
-  const isBookExist = user.purchasedBooks.some((isbn) => isbn === isbn);
-  if (!isBookExist) {
-    throw new CustomError("You can't review books you haven't purchased", 403);
-  }
+  await checkBookPurchased(isbn, user);
 
   // lay index cua review
   const reviewIndex = book.reviews.findIndex(
@@ -136,6 +137,31 @@ export const updateABookReview = async (isbn, reviewData, email) => {
   // goi update book tu model
   await bookModel.save(book);
   return book.reviews[reviewIndex];
+};
+
+export const removeUserBookReview = async (isbn, email) => {
+  const book = await bookModel.findByISBN(isbn);
+  if (!book) {
+    throw new CustomError(`Book not found with isbn ${isbn}!`, 404);
+  }
+
+  const user = await getUserByEmail(email);
+  if (!user) {
+    throw new CustomError("Ops, something went wrong.", 500);
+  }
+  await checkBookPurchased(isbn, user);
+
+  const reviewIndex = book.reviews.findIndex(
+    (review) => (review.uid = user.uid)
+  );
+
+  if (reviewIndex === -1) {
+    throw new CustomError("User has not reviewed yet", 404);
+  }
+
+  book.reviews.splice(reviewIndex, 1);
+
+  bookModel.save(book);
 };
 
 // {
