@@ -132,7 +132,7 @@ export const validateUpdateBook = [
   },
 ];
 
-export const validateAddReviews = [
+export const validateReview = [
   // Check "comment" field
   body("comment")
     .isString()

@@ -81,7 +81,7 @@ export const addBookReview = async (isbn, reviewData, email) => {
     book?.reviews.some((review) => review.uid === user.uid) || false;
   if (isUserReviewed) {
     throw new CustomError(
-      "Bad request! Do not use this endpoint to update new reviews.",
+      "Bad request! Do not use this endpoint to update reviews.",
       400
     );
   }
@@ -96,9 +96,46 @@ export const addBookReview = async (isbn, reviewData, email) => {
   book.reviews.push(newReview);
 
   // goi update book tu model
-  bookModel.save(book);
+  await bookModel.save(book);
 
   return newReview;
+};
+
+export const updateABookReview = async (isbn, reviewData, email) => {
+  // check isbn ton tai va lay book
+  let book = await bookModel.findByISBN(isbn);
+  if (!book) {
+    throw new CustomError("book not exist!", 404);
+  }
+
+  // check user da mua book do chua
+  const user = await getUserByEmail(email);
+  if (!user) {
+    throw new CustomError("user not found!", 404);
+  }
+  const isBookExist = user.purchasedBooks.some((isbn) => isbn === isbn);
+  if (!isBookExist) {
+    throw new CustomError("You can't review books you haven't purchased", 403);
+  }
+
+  // lay index cua review
+  const reviewIndex = book.reviews.findIndex(
+    (review) => review.uid === user.uid
+  );
+  if (reviewIndex === -1) {
+    throw new CustomError(
+      "Bad request! Do not use this endpoint to create new reviews.",
+      400
+    );
+  }
+
+  // update review
+  book.reviews[reviewIndex].rating = reviewData.rating;
+  book.reviews[reviewIndex].comment = reviewData.comment;
+
+  // goi update book tu model
+  await bookModel.save(book);
+  return book.reviews[reviewIndex];
 };
 
 // {

@@ -7,7 +7,7 @@ import {
   isCustomerRole,
 } from "../middlewares/authenticator.js";
 import {
-  validateAddReviews,
+  validateReview,
   validateCreateBook,
   validateUpdateBook,
 } from "../validators/bookValidator.js";
@@ -39,8 +39,15 @@ router.post(
   "/:isbn/reviews",
   checkJwt,
   isCustomerRole,
-  validateAddReviews,
+  validateReview,
   bookController.addBookReview
+);
+
+router.patch(
+  "/:isbn/reviews",
+  checkJwt,
+  isCustomerRole,
+  bookController.updateBookReview
 );
 
 export default router;

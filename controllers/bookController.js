@@ -108,3 +108,20 @@ export const addBookReview = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateBookReview = async (req, res, next) => {
+  try {
+    // lay data isbn, review_data
+    const { isbn } = req.params;
+    const reviewData = req.body;
+    const email = req.user.username;
+    const reviewUpdated = await bookService.updateABookReview(
+      isbn,
+      reviewData,
+      email
+    );
+    res.status(200).json({ message: "review updated", review: reviewUpdated });
+  } catch (error) {
+    next(error);
+  }
+};

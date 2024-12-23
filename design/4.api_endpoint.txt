@@ -8,9 +8,9 @@ Books & Reviews Resources
 5. POST /books --Vendor thêm một cuốn sách mới.
 6. PUT /books/{isbn} --Vendor cập nhật thông tin sách.
 7. DELETE /books/{isbn} --Vendor xóa sách theo ISBN.
-
 8. POST books/{isbn}/reviews --Thêm mới đánh giá cho sách.
-9. PUT /books/{isbn}/reviews/{reviewId} --Cập nhật đánh giá của người dùng.
+
+9. PATCH /books/{isbn}/reviews --Cập nhật đánh giá của người dùng.
 10. DELETE /books/{isbn}/reviews/{reviewId} --Xóa đánh giá của người dùng.
 
 Users Resource
