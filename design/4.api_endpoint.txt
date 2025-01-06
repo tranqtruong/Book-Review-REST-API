@@ -10,7 +10,6 @@ Books & Reviews Resources
 7. DELETE /books/{isbn} --Vendor xóa sách theo ISBN.
 8. POST books/{isbn}/reviews --Thêm mới đánh giá cho sách.
 9. PATCH /books/{isbn}/reviews --Cập nhật đánh giá của người dùng.
-
 10. DELETE /books/{isbn}/reviews --Xóa đánh giá của người dùng.
 
 Users Resource
