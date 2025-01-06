@@ -7,5 +7,6 @@ const router = express.Router();
 
 router.get("/:uid", checkJwt, isCustomerRole, userController.getUser);
 router.patch("/:uid", checkJwt, isCustomerRole, userController.updateUserInfo);
+router.post("/orders/:isbn", checkJwt, isCustomerRole, userController.buyBook);
 
 export default router;

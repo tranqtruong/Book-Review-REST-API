@@ -22,3 +22,14 @@ export const updateUserInfo = async (req, res, next) => {
     next(error);
   }
 };
+
+export const buyBook = async (req, res, next) => {
+  try {
+    const { isbn } = req.params;
+    const email = req.user.username;
+    await userService.addPurchasedBook(email, isbn);
+    res.status(201).json({ message: "ok" });
+  } catch (error) {
+    next(error);
+  }
+};
